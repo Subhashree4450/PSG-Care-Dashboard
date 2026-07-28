@@ -94,6 +94,12 @@ const IconLab = () => (
     <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11l-4 6h14l-4-6V3"/>
   </svg>
 );
+const IconSearch = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="11" cy="11" r="8"/>
+    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+  </svg>
+);
 
 const StatCard = ({ icon, label, value, color, sublabel, onClick, active }) => (
   <div 
@@ -112,10 +118,16 @@ const StatCard = ({ icon, label, value, color, sublabel, onClick, active }) => (
   </div>
 );
 
-const DeptBar = ({ name, count, max }) => {
+const DeptBar = ({ name, count, max, onClick, active }) => {
   const pct = max > 0 ? Math.round((count / max) * 100) : 0;
   return (
-    <div className="dept-bar">
+    <div 
+      className={`dept-bar ${active ? "dept-bar--active" : ""}`}
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+      title={`Filter by ${name}`}
+    >
       <div className="dept-bar__header">
         <span className="dept-bar__name">{name}</span>
         <span className="dept-bar__count">{count}</span>
@@ -471,7 +483,7 @@ const Dashboard = () => {
           icon={<IconPeople />}
           label="Total Records"
           value={stats?.totalEntries ?? "—"}
-          color="primary"
+          color="purple"
           sublabel="All time"
           onClick={() => handleStatClick('total')}
           active={isStatActive('total')}
@@ -521,6 +533,8 @@ const Dashboard = () => {
                   name={d._id || "Unknown"}
                   count={d.count}
                   max={maxDeptCount}
+                  active={filters.department === d._id}
+                  onClick={() => handleFilterChange("department", filters.department === d._id ? "" : d._id)}
                 />
               ))
             ) : (
@@ -570,7 +584,9 @@ const Dashboard = () => {
           {/* Filters */}
           <div className="filters">
             <div className="filters__search-wrap">
-              <span className="filters__search-icon">🔍</span>
+              <span className="filters__search-icon">
+                <IconSearch />
+              </span>
               <input
                 id="search-input"
                 className="filters__search"

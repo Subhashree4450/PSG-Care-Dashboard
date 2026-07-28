@@ -239,6 +239,7 @@
   border-radius: 4px 0 0 4px;
 }
 
+.stat-card--purple::before  { background: #8b5cf6; }
 .stat-card--primary::before { background: var(--primary); }
 .stat-card--info::before    { background: var(--info); }
 .stat-card--warning::before { background: var(--warning); }
@@ -254,6 +255,7 @@
   box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
 }
 
+.stat-card--active.stat-card--purple { border-color: #8b5cf6; box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.25); }
 .stat-card--active.stat-card--primary { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2); }
 .stat-card--active.stat-card--info { border-color: var(--info); box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2); }
 .stat-card--active.stat-card--warning { border-color: var(--warning); box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2); }
@@ -352,6 +354,10 @@
   font-size: 13px;
   color: var(--text-muted);
   margin-top: 2px;
+.dept-panel .panel__header:first-child .panel__title {
+  font-size: 17px;
+  font-weight: 700;
+  margin-left: 4px;
 }
 
 /* ── Department bars ─────────────────────────────────────── */
@@ -359,10 +365,31 @@
 .dept-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
 }
 
-.dept-bar {}
+.dept-bar {
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  border: 1.5px solid transparent;
+}
+
+.dept-bar:hover {
+  background: var(--primary-surface);
+  transform: translateX(2px);
+}
+
+.dept-bar--active {
+  background: var(--primary-surface);
+  border-color: var(--primary-light);
+}
+
+.dept-bar--active .dept-bar__name {
+  font-weight: 700;
+  color: var(--primary);
+}
 
 .dept-bar__header {
   display: flex;
@@ -508,8 +535,11 @@
   left: 12px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 14px;
+  color: var(--text-muted);
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .filters__search {
