@@ -354,6 +354,8 @@
   font-size: 13px;
   color: var(--text-muted);
   margin-top: 2px;
+}
+
 .dept-panel .panel__header:first-child .panel__title {
   font-size: 17px;
   font-weight: 700;
