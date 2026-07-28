@@ -71,7 +71,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 16px 32px;
+  padding: 14px 24px;
   background: var(--bg-card);
   border-bottom: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
@@ -198,7 +198,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  padding: 24px 32px 0;
+  padding: 20px 24px 0;
 }
 
 .stat-card {
@@ -296,11 +296,12 @@
 
 .body-grid {
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 300px 1fr;
   gap: 20px;
-  padding: 20px 32px 24px;
+  padding: 20px 24px 24px;
   flex: 1;
   align-items: start;
+  min-width: 0;
 }
 
 /* ── Panels ──────────────────────────────────────────────── */
@@ -532,6 +533,8 @@
   outline: none;
   cursor: pointer;
   transition: border-color 0.2s ease;
+  min-width: 140px;
+  max-width: 200px;
 }
 
 .filters__select:focus {
@@ -567,9 +570,11 @@
 
 .table-wrap {
   overflow-x: auto;
+  overflow-y: auto;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-light);
   min-height: 200px;
+  max-height: calc(100vh - 340px);
 }
 
 .entries-table {
