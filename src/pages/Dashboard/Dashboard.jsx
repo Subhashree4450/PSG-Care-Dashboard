@@ -54,6 +54,7 @@ const getDuration = (inTime, outTime) => {
   
   const diff = new Date(end) - new Date(inTime);
   const mins = Math.floor(diff / 60000);
+  if (mins < 0) return "Invalid time";
   if (mins < 60) return `${mins}m${ongoing ? " (ongoing)" : ""}`;
   
   const hrs = Math.floor(mins / 60);
@@ -721,10 +722,6 @@ const Dashboard = () => {
                                 <div className="detail-field">
                                   <span className="detail-field__label">Entry Created</span>
                                   <span className="detail-field__value">{formatRealTime(entry.createdAt)}</span>
-                                </div>
-                                <div className="detail-field">
-                                  <span className="detail-field__label">Record ID</span>
-                                  <span className="detail-field__value detail-field__value--mono">{entry._id}</span>
                                 </div>
                               </div>
                             </td>
